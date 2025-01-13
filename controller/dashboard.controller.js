@@ -37,7 +37,7 @@ module.exports = {
 
     const settings_result=result.recordset[0].expiry_days?result.recordset[0].expiry_days:5
 
-    console.log("settings result",settings_result)
+
 
       const expiryDate = new Date();
       expiryDate.setDate(expiryDate.getDate() +settings_result);

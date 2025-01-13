@@ -51,7 +51,6 @@ const settingsPage=async(req, res) => {
   SELECT * FROM Settings 
   WHERE user_id = ${req.session.user.id}
 `;
-console.log(result,"settings")
   res.render('settings',{settings:result.recordset[0]});
 }
 

@@ -14,7 +14,7 @@ module.exports = {
     try {
       const { username, email, password, confirmPassword } = req.body;
 
-      console.log(req.body);
+
 
       if (password !== confirmPassword) {
         return res

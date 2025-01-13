@@ -42,13 +42,11 @@ module.exports = {
                     text_font_size = ${textFontSize}
                 WHERE user_id = ${req.session.user.id}
             `;
-        console.log("Settings updated");
       } else {
         await mssql.query`
                 INSERT INTO Settings (user_id, expiry_days, voucher_width, voucher_height, title_font_size, text_font_size)
                 VALUES (${req.session.user.id}, ${expiryDays}, ${voucherWidth}, ${voucherHeight}, ${titleFontSize}, ${textFontSize})
             `;
-        console.log("New settings created");
       }
 
       res.status(200).json({ success: true });
