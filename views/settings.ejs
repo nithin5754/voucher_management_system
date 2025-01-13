@@ -1,0 +1,69 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/settings.css" />
+</head>
+<body>
+  <div class="modal" id="voucherModal">
+  
+    
+      <div class="settings-container">
+        <h2>Voucher Settings</h2>
+        
+        <form id="settingsForm">
+            <div class="form-group">
+                <label>Voucher Expiry (days):</label>
+                <input type="number" name="expiryDays" 
+                       value="<%= settings.expiry_days %>" min="1" max="365">
+            </div>
+            
+            <div class="form-group">
+                <label>Voucher Width (mm):</label>
+                <input type="number" name="voucherWidth" 
+                       value="<%= settings.voucher_width %>" min="100" max="500">
+            </div>
+            
+            <div class="form-group">
+                <label>Voucher Height (mm):</label>
+                <input type="number" name="voucherHeight" 
+                       value="<%= settings.voucher_height %>" min="100" max="500">
+            </div>
+            
+            <div class="form-group">
+                <label>Title Font Size:</label>
+                <input type="number" name="titleFontSize" 
+                       value="<%= settings.title_font_size %>" min="10" max="40">
+            </div>
+            
+            <div class="form-group">
+                <label>Text Font Size:</label>
+                <input type="number" name="textFontSize" 
+                       value="<%= settings.text_font_size %>" min="8" max="20">
+            </div>
+
+            <button type="submit">save Settings</button>
+          
+        </form>
+        <button id="default-settings" type="button">Default</button>
+    </div>
+
+  </div>
+  <div class="container">
+    <div class="sidebar">
+      <h2> Dashboard</h2>
+      <ul>
+        <li><a href="/dashboard">Voucher list</a></li>
+        <li class="logout_btn"><a href="/logout" >Logout</a></li>
+      </ul>
+    </div>
+  </div>
+  <script src="js/settings.fetch.js"></script>
+</body>
+</html>

@@ -1,3 +1,4 @@
+const { mssql } = require("../database/connection");
 
 
 
@@ -20,8 +21,45 @@ const registerPage=(req, res) => {
   res.render('register');
 }
 
-const dashboardPage=(req, res) => {
-  res.render('dashboard',{user: req.session.user,vouchers:[]});
+
+const settingsPage=async(req, res) => {
+
+  const result = await mssql.query`
+  SELECT * FROM Settings 
+  WHERE user_id = ${req.session.user.id}
+`;
+console.log(result,"settings")
+  res.render('settings',{settings:result.recordset[0]});
+}
+
+const dashboardPage=async(req, res) => {
+
+  if (!req.session.user) {
+    res.redirect('/login');
+    return;
+}
+
+try {
+    const result = await mssql.query`
+        SELECT * FROM Vouchers 
+        WHERE user_id = ${req.session.user.id}
+        ORDER BY generated_date DESC
+    `;
+
+
+   return res.render('dashboard', { 
+        vouchers: result.recordset,
+        user: req.session.user,
+       
+    });
+} catch (err) {
+    console.error(err);
+    res.render('dashboard', { 
+        error: 'Failed to load vouchers',
+        vouchers: [],
+        user: req.session.user
+    });
+}
 }
 
 
@@ -29,5 +67,5 @@ const dashboardPage=(req, res) => {
 
 
 
-module.exports = {loginPage,home,registerPage,dashboardPage};
+module.exports = {loginPage,home,registerPage,dashboardPage,settingsPage};
 

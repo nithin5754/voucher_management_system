@@ -18,6 +18,8 @@
     "express-session": "^1.18.1",
     "mssql": "^11.0.1",
     "nocache": "^4.0.0",
+    "pdfkit": "^0.16.0",
+    "qrcode": "^1.5.4",
     "uuid": "^11.0.5"
   },
   "devDependencies": {

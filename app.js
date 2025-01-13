@@ -11,6 +11,8 @@ const port =5000;
 
 
 const userRoutes=require('./routes/user.routes')
+const dashboardRoutes=require('./routes/dashboard.routes')
+const settingsRoutes=require('./routes/setting.routes')
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
@@ -38,6 +40,8 @@ app.use(session({
 app.use(nocache());
 
 app.use('/', userRoutes);
+app.use('/', dashboardRoutes);
+app.use('/',settingsRoutes)
 
 dbConnect.getConnection().then(() => {
   app.listen(port, () => {

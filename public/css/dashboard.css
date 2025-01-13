@@ -2,56 +2,12 @@
 @import url('global.css');
 @import url('nav.css');
 
+@import url('sidebar.css');
 
 
-/* .dashboard-container {
-  display: flex;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-} */
 
-/* Sidebar Styling */
-.sidebar {
-  background-color: #333;
-  color: white;
-  width: 250px;
-  padding: 20px;
-  box-sizing: border-box;
-}
 
-.sidebar h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 20px;
-  color: #fff;
-}
-
-.sidebar ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.sidebar ul li {
-  margin: 15px 0;
-}
-
-.sidebar ul li a {
-  text-decoration: none;
-  color: white;
-  font-size: 16px;
-  display: block;
-  padding: 10px 0;
-  border-radius: 4px;
-  transition: background-color 0.3s ease, padding-left 0.3s ease;
-}
-
-.sidebar ul li a:hover {
-  background-color: #575757;
-  padding-left: 15px;
-}
-
-/* Main Content Styling */
+/* /Main Content Styling */
 .main-content {
   flex-grow: 1;
   padding: 20px;
@@ -70,8 +26,6 @@
   color: #555;
 }
 
-
-
 /* Table Styling */
 .vouchers-list table {
   width: 100%;
@@ -79,35 +33,55 @@
   margin-top: 20px;
 }
 
+.vouchers-list p {
+  font-size: 28px;
+  font-weight: 600;
+}
+
 .vouchers-list th,
 .vouchers-list td {
-  text-align: left;
-  padding: 12px 15px;
+  text-align: center;
+  padding: 12px;
   border-bottom: 1px solid #ddd;
 }
 
 .vouchers-list th {
-  background-color: #f8f9fa;
+
   font-size: 16px;
   font-weight: bold;
+  color: #333;
 }
 
 .vouchers-list td {
-  background-color: #fff;
+  background-color: #ffffff;
+  color: #555;
+  font-size: 14px;
 }
 
-.vouchers-list tr:hover {
-  background-color: #f1f1f1;
+
+
+.vouchers-list .button-container {
+  display: flex;
+  justify-content: center; 
+  gap: 10px; 
 }
+
 
 .vouchers-list .button {
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: white;
+  padding: 10px 20px;
+  background-color: #007bff; 
+  color: #ffffff;
   text-decoration: none;
   border-radius: 5px;
-  transition: background-color 0.3s ease;
-  margin-right: 10px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+  width: 120px;
+  height: 40px;
 }
 
 .vouchers-list .button:hover {
@@ -115,10 +89,33 @@
 }
 
 .vouchers-list .button:active {
-  background-color: #004085;
+  transform: scale(0.95);
 }
 
 .vouchers-list .button:disabled {
   background-color: #d6d6d6;
   cursor: not-allowed;
+}
+
+/* View Button */
+.vouchers-list .button.view-btn {
+  background-color: #17a2b8; /* Info cyan for view button */
+}
+
+.vouchers-list .button.view-btn:hover {
+  background-color: #138496; /* Darker cyan for view button */
+}
+
+/* QR Code Styling */
+.vouchers-list .qr-code-img {
+  display: inline-block;
+  width: 50px; /* Limit size for better alignment */
+  height: 50px;
+  overflow: hidden;
+}
+
+.vouchers-list .qr-code-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }

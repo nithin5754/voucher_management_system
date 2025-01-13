@@ -1,75 +1,90 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Dashboard - Voucher System</title>
-    <link rel="stylesheet" href="/css/dashboard.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/css/dashboard.css" />
+    <link rel="stylesheet" href="/css/voucher.css" />
+  </head>
+  <body>
+    <div class="modal" id="voucherModal">
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+        <h1>Voucher OR Code</h1>
 
+        <img src="" id="voucher_img" alt="" />
+        <button class="closeBtn" type="button">Close</button>
+      </div>
+    </div>
 
-
-  <div class="container">
-    <div class="sidebar">
-      <h2>Voucher Dashboard</h2>
+    <div class="container">
+      <div class="sidebar">
+        <h2> Dashboard</h2>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Voucher Management</a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Logout</a></li>
+          <li><a href="/settings">Settings</a></li>
+          <li class="logout_btn"><a href="/logout">Logout</a></li>
         </ul>
-    </div>
-    
-    <div class="main-content">
-      <nav>
-     <div class="">   <span>Welcome, <%= user.username %></span></div>
-       <div class="">
-        <a href="/settings">Settings</a>
-        <a href="/logout">Logout</a>
-        <button id="generateVoucher" class="primary-button">Generate New Voucher</button>
-       </div>
-    </nav>
+      </div>
 
-    <div class="">
- 
-        
+      <div class="main-content">
+        <nav>
+          <div class="nav_left"><span>Welcome, <%= user.username %></span></div>
+          <div class="nav_right">
+            <button id="generateVoucher" class="primary-button">
+              Generate New Voucher
+            </button>
+          </div>
+        </nav>
 
-
-        <div class="vouchers-list">
-            <h3>Your Vouchers</h3>
+        <div class="">
+          <div class="vouchers-list">
+            <p>Your Vouchers</p>
             <% if (vouchers.length === 0) { %>
-                <p>No vouchers generated yet.</p>
+            <p>No vouchers generated yet.</p>
             <% } else { %>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Number</th>
-                            <th>Generated Date</th>
-                            <th>Expiry Date</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% vouchers.forEach(voucher => { %>
-                            <tr>
-                                <td><%= voucher.number %></td>
-                                <td><%= voucher.generated_date.toLocaleDateString() %></td>
-                                <td><%= voucher.expiry_date.toLocaleDateString() %></td>
-                                <td>
-                                    <a href="/generate-pdf/<%= voucher.id %>" 
-                                       class="button">Export PDF</a>
-                                    <button onclick="printVoucher('<%= voucher.id %>')" 
-                                            class="button">Print</button>
-                                </td>
-                            </tr>
-                        <% }) %>
-                    </tbody>
-                </table>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>QR code</th>
+                  <th>Code</th>
+                  <th>Generated Date</th>
+                  <th>Expiry Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% vouchers.forEach(voucher => { %>
+                <tr>
+                  <td>
+                    <div class="qr-code-img">
+                      <img src="<%= voucher.qr_code %>" alt="QR Code" />
+                    </div>
+                  </td>
+                  <td><%= voucher.number %></td>
+                  <td><%= voucher.generated_date.toLocaleDateString() %></td>
+                  <td><%= voucher.expiry_date.toLocaleDateString() %></td>
+                  <td class="button-container">
+                    <a class="button" href="/generate-pdf/<%= voucher.id %>"
+                      >Pdf</a
+                    >
+
+                    <button
+                      class="button view-btn"
+                      data-voucher="<%= JSON.stringify(voucher) %>"
+                    >
+                      View
+                    </button>
+                  </td>
+                </tr>
+                <% }) %>
+              </tbody>
+            </table>
             <% } %>
+          </div>
         </div>
+      </div>
     </div>
 
-    </div>
-</div>
-</body>
+    <script src="js/generate.fetch.js"></script>
+  </body>
 </html>

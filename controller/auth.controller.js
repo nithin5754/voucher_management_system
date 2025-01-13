@@ -18,6 +18,10 @@ module.exports = {
       const hashedPassword = await bcrypt.hash(password, saltRounds);
 
       const existingUser = await mssql.query`SELECT * FROM Users WHERE email = ${email} OR username = ${username}`;
+
+        
+    
+
       if (existingUser.recordset.length > 0) {
         return res
           .status(400)
@@ -52,6 +56,12 @@ module.exports = {
       
       if (user && await bcrypt.compare(password, user.password)) {
           req.session.user = { id: user.id, username: user.username ,email:user.email};
+      if(req.session.user&&req.session.user.id){
+        await mssql.query`
+        INSERT INTO Settings (user_id)
+        VALUES (${req.session.user.id})
+       `;
+      }
           return res
           .status(200)
           .json({ success: true, message: "Login successful!" });
@@ -68,5 +78,14 @@ module.exports = {
         message: "An error occurred. Please try again.",
       });
   }
-}
+},
+
+
+  logout: (req, res) => {
+    if (req.session.user) {
+      console.log(`${req.session.user.fullname} logged out`);
+    }
+    req.session.destroy(); 
+    return res.redirect('/');
+  }
 };

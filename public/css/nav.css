@@ -8,75 +8,44 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #007bff;
+  background-color: #4882c1;
   padding: 10px 20px;
   color: white;
   border-radius: 5px;
   margin-bottom: 20px;
+  height: 50px;
+  font-size: 14px;
 }
 
-nav .welcome {
-  font-size: 18px;
-  font-weight: bold;
+
+.nav_left {
+font-size: 18px;
+font-weight: 600;
+
 }
 
-nav .actions {
-  display: flex;
-  align-items: center;
-}
-
-nav .actions a {
-  color: white;
+.nav_right button{
+  padding: 10px 8px;
+  background-color: #3d3d3d; 
+  color: #ffffff;
   text-decoration: none;
-  font-size: 16px;
-  padding: 8px 15px;
   border-radius: 5px;
-  background-color: #0056b3;
-  margin-right: 15px;
-  transition: background-color 0.3s ease;
-}
-
-nav .actions a:hover {
-  background-color: #004085;
-}
-
-nav .actions button {
-  background-color: #28a745;
-  color: white;
   border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+  width: 200px;
+  height: 40px;
+
 }
 
-nav .actions button:hover {
-  background-color: #218838;
-}
 
-nav .actions button:active {
-  background-color: #1e7e34;
-}
 
-/* Responsive Design for Navbar */
-@media (max-width: 768px) {
-  nav {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 15px;
-  }
 
-  nav .actions {
-      margin-top: 10px;
-      width: 100%;
-      justify-content: flex-start;
-  }
 
-  nav .actions a,
-  nav .actions button {
-      margin-right: 10px;
-      margin-bottom: 10px;
-  }
-}
+
+
+

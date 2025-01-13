@@ -1,0 +1,67 @@
+.modal {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 50;
+  overflow: hidden;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center; 
+  align-items: center;    
+}
+
+.modal-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+.modal-content {
+  position: relative;
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 500px;
+  width: 90%;
+  height:400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;    
+  margin:10% auto;
+  
+}
+.modal-content h1 {
+  font-size: 24px;  
+  font-weight: 300; 
+}
+.modal-content button {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #6fb60c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#voucherModal {
+  display: none;
+}
+
+#voucher_img {
+  width: 300px;
+  height:300px;
+  object-fit: cover; 
+}
+
+

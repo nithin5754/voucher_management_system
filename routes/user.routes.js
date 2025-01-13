@@ -17,6 +17,9 @@ router.route('/login')
   .post(sessionMangement,authData.loginData);   
 
 
+  router.route('/logout').get(authData.logout)
+
+
 router.route('/dashboard').get(userAuth,pages.dashboardPage);
 
 module.exports = router;
