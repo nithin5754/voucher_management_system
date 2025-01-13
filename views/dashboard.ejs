@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - Voucher System</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+
+
+
+  <div class="container">
+    <div class="sidebar">
+      <h2>Voucher Dashboard</h2>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Voucher Management</a></li>
+            <li><a href="#">Reports</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+    
+    <div class="main-content">
+      <nav>
+     <div class="">   <span>Welcome, <%= user.username %></span></div>
+       <div class="">
+        <a href="/settings">Settings</a>
+        <a href="/logout">Logout</a>
+        <button id="generateVoucher" class="primary-button">Generate New Voucher</button>
+       </div>
+    </nav>
+
+    <div class="">
+ 
+        
+
+
+        <div class="vouchers-list">
+            <h3>Your Vouchers</h3>
+            <% if (vouchers.length === 0) { %>
+                <p>No vouchers generated yet.</p>
+            <% } else { %>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th>Generated Date</th>
+                            <th>Expiry Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% vouchers.forEach(voucher => { %>
+                            <tr>
+                                <td><%= voucher.number %></td>
+                                <td><%= voucher.generated_date.toLocaleDateString() %></td>
+                                <td><%= voucher.expiry_date.toLocaleDateString() %></td>
+                                <td>
+                                    <a href="/generate-pdf/<%= voucher.id %>" 
+                                       class="button">Export PDF</a>
+                                    <button onclick="printVoucher('<%= voucher.id %>')" 
+                                            class="button">Print</button>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            <% } %>
+        </div>
+    </div>
+
+    </div>
+</div>
+</body>
+</html>
