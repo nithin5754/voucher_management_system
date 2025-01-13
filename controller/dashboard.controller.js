@@ -5,6 +5,13 @@ const QRCode = require("qrcode");
 const pdfConfig = require("../utils/utils");
 
 module.exports = {
+   /**
+ * 
+ * @param {null } req.body
+ * @param {user:{id,username,email}} req.session
+ * @returns {success: true, message: "Voucher successfully Created!"}
+ * @description "generate new vouchers Controller"
+ */
   generateVoucher: async (req, res) => {
     if (!req.session.user) {
       res.status(401).json({ error: "Unauthorized" });
@@ -23,8 +30,17 @@ module.exports = {
         },
       });
 
+      const result = await mssql.query`
+      SELECT * FROM Settings WHERE user_id = ${req.session.user.id}
+  `;
+
+
+    const settings_result=result.recordset[0].expiry_days?result.recordset[0].expiry_days:5
+
+    console.log("settings result",settings_result)
+
       const expiryDate = new Date();
-      expiryDate.setDate(expiryDate.getDate() + 30);
+      expiryDate.setDate(expiryDate.getDate() +settings_result);
 
       await mssql.query`
             INSERT INTO Vouchers (
@@ -52,7 +68,13 @@ module.exports = {
     }
   },
 
-
+   /**
+ * 
+ * @param {null } req.body
+ * @param {user:{id,username,email}} req.session
+ * @returns {success: true, message: "New PDF  Created using pdfkit!"}
+ * @description "generate new PDF"
+ */
 
   generatePDF: async (req, res) => {
     if (!req.session.user) {
@@ -122,7 +144,7 @@ module.exports = {
 
       pdfConfig.addBackground(doc, config);
 
-      // Add main content
+    
       pdfConfig.addHeader(doc, voucher, config);
       pdfConfig.addQRCode(doc, voucher, settings);
       pdfConfig.addDates(doc, voucher, config);

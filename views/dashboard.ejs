@@ -50,6 +50,7 @@
                   <th>Generated Date</th>
                   <th>Expiry Date</th>
                   <th>Actions</th>
+                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -64,7 +65,7 @@
                   <td><%= voucher.generated_date.toLocaleDateString() %></td>
                   <td><%= voucher.expiry_date.toLocaleDateString() %></td>
                   <td class="button-container">
-                    <a class="button" href="/generate-pdf/<%= voucher.id %>"
+                    <a class="button pdf_btn" href="/generate-pdf/<%= voucher.id %>"
                       >Pdf</a
                     >
 
@@ -75,6 +76,14 @@
                       View
                     </button>
                   </td>
+                  <td>
+                    <% if (new Date() > voucher.expiry_date) { %>
+                      Expired
+                    <% } else { %>
+                      Not Expired
+                    <% } %>
+                  </td>
+              
                 </tr>
                 <% }) %>
               </tbody>

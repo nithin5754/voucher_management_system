@@ -5,11 +5,11 @@ const mssql=require('mssql');
 
 
 const config = {
-  user: 'sa', 
-  password: 'yourStrong#Password', 
-  server: 'localhost',
-  port: 4000, 
-  database: 'DBstore', 
+  user:process.env.USER, 
+  password:process.env.PASSWORD, 
+  server:process.env.SERVER,
+  port:Number(process.env.MSSQL_PORT), 
+  database:process.env.DATABASE, 
   options: {
     encrypt: true, 
     trustServerCertificate: true, 

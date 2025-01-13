@@ -7,7 +7,7 @@ const { v4: uuid4 } = require('uuid');
 
 const dbConnect=require('./database/connection')
 const app = express();
-const port =5000;
+const port =process.env.PORT
 
 
 const userRoutes=require('./routes/user.routes')

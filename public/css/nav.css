@@ -3,7 +3,7 @@
 @import url('reset.css');
 @import url('global.css');
 
-/* Navbar Styling */
+
 nav {
   display: flex;
   justify-content: space-between;

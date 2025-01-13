@@ -2,7 +2,13 @@ const { mssql } = require("../database/connection");
 
 
 
-
+   /**
+ * 
+ * @param {null } req.body
+ * @param {user:{id,username,email}} req.session
+ * @returns {'login','dashboard'}
+ * @description "home page index Controller"
+ */
 
 const home=(req, res) => {
   if (!req.session.user) {
@@ -12,15 +18,32 @@ const home=(req, res) => {
   res.redirect('/dashboard');
 }
 
-
+   /**
+ * 
+ * @param {null } req.body
+ * @returns {'login'}
+ * @description "login page Controller"
+ */
 const loginPage=(req, res) => {
   res.render('login');
 }
+   /**
+ * 
+ * @param {null } req.body
 
+ * @returns {'register'}
+ * @description "register page Controller"
+ */
 const registerPage=(req, res) => {
   res.render('register');
 }
-
+   /**
+ * 
+ * @param {null } req.body
+ * @param {user:{id,username,email}} req.session
+ * @returns {'setting'}
+ * @description "setting page Controller"
+ */
 
 const settingsPage=async(req, res) => {
 
@@ -31,6 +54,14 @@ const settingsPage=async(req, res) => {
 console.log(result,"settings")
   res.render('settings',{settings:result.recordset[0]});
 }
+
+   /**
+ * 
+ * @param {null } req.body
+ * @param {user:{id,username,email}} req.session
+ * @returns {'register'}
+ * @description "dashboard page Controller"
+ */
 
 const dashboardPage=async(req, res) => {
 

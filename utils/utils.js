@@ -1,5 +1,4 @@
 function addBackground(doc, config) {
-  // Add decorative border
   const padding = 20;
   doc
     .rect(
@@ -12,7 +11,6 @@ function addBackground(doc, config) {
     .strokeColor(config.colors.border)
     .stroke();
 
-  // Add inner border
   doc
     .rect(
       padding + 10,
@@ -47,15 +45,13 @@ function addHeader(doc, voucher, config) {
     });
 }
 
-
 function addQRCode(doc, voucher, settings) {
   if (!voucher.qr_code) {
     throw new Error("QR code is required");
   }
 
-  const qrWidth = settings.voucher_width || 150; 
+  const qrWidth = settings.voucher_width || 150;
   const qrHeight = settings.voucher_height || 150;
-
 
   const xPos = (doc.page.width - qrWidth) / 2;
   const yPos = (doc.page.height - qrHeight) / 2;
@@ -69,12 +65,10 @@ function addQRCode(doc, voucher, settings) {
   });
 }
 
-
 function addDates(doc, voucher, config) {
   const yPosition = doc.page.height - 120;
 
   const currentY = yPosition;
-
 
   doc
     .font(config.fonts.body)
